@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Üzenj nekünk!
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mx-auto" style="max-width: 500px">
+            {{ message}}
+        </div>
+    {% endfor %}
+    <h2 class="display-2 text-light my-5">Üzenj nekünk</h2>
+    <div class="bg-light p-5 border border-dark mx-auto" style="max-width: 800px">
+        {{ form_start(form) }}
+            {{ form_help(form) }}
+
+            {{ form_widget(form) }}
+
+            <button type="submit" class="btn btn-success">Küldés</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

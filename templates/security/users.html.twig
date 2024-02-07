@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Felhasználók{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mx-auto" style="max-width: 500px">
+            {{ message}}
+        </div>
+    {% endfor %}
+    <h1 class="display-1 text-light my-5">Felhasználók</h1>
+    <div class="mb-3 text-left">
+        <a class="btn btn-dark" href="{{ path('user.new')}}">Új felhasználó</a>
+    </div>
+    <div class="bg-light pt-3 px-3 border border-dark">
+        <table class="table table-secondary table-striped table-hover border border-secondary">
+            <tr>
+                <th>Felhasználónév</th>
+                <th>Szerepkör</th>
+                <th>Kezelés</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td><a class="text-decoration-none text-dark" href="{{ path('user.show', {id: user.id})}}">{{user.username}}</a></td>
+                    <td>
+                        <span class="d-inline-block text-truncate" style="max-width: 100px;">
+                            <a class="text-decoration-none text-dark" href="{{ path('user.show', {id: user.id})}}">
+                                {{user.roles[0]}}
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{ path('user.delete', {id: user.id})}}" class="btn btn-danger">Törlés</a>
+                        <a href="{{ path('user.show', {id: user.id})}}" class="btn btn-primary">Megnéz</a>
+                        <a href="{{ path('user.edit', {id: user.id})}}" class="btn btn-success">Módosít</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Belépés!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Be vagy jelentkezve mint {{ app.user.userIdentifier }}, <a href="{{ path('logout') }}">Kilépés</a>
+        </div>
+    {% endif %}
+
+    <h1 class="display-2 text-light my-5">Kérlek jelentkezz be!</h1>
+    <div class="bg-light p-5 border border-dark mx-auto" style="max-width: 500px">
+        <label for="floatingInput">Felhasználónév</label>
+        <input type="text" value="{{ last_username }}" name="username" id="floatingInput" class="form-control my-3" autocomplete="username" required autofocus>
+        <label for="floatingPassword">Jelszó</label>
+        <input type="password" name="password" id="floatingPassword" class="form-control mt-3" autocomplete="current-password" required>
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}">
+
+        <button class="btn btn-lg btn-success mt-3" type="submit">
+            Belépés
+        </button>
+    </div>
+</form>
+{% endblock %}

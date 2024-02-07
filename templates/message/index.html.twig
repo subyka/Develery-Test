@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Üzenetek{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mx-auto" style="max-width: 500px">
+            {{ message}}
+        </div>
+    {% endfor %}
+    <h1 class="display-1 text-light my-5">Üzenetek</h1>
+    <div class="bg-light pt-3 px-3 border border-dark">
+        <table class="table table-secondary table-striped table-hover border border-secondary">
+            <tr>
+                <th>Név</th>
+                <th>Email</th>
+                <th>Üzenet</th>
+                <th>Kezelés</th>
+            </tr>
+            {% for message in messages %}
+                <tr>
+                    <td><a class="text-decoration-none text-dark" href="{{ path('message.show', {id: message.id})}}">{{message.name}}</a></td>
+                    <td><a class="text-decoration-none text-dark" href="{{ path('message.show', {id: message.id})}}">{{message.email}}</a></td>
+                    <td>
+                        <span class="d-inline-block text-truncate" style="max-width: 100px;">
+                            <a class="text-decoration-none text-dark" href="{{ path('message.show', {id: message.id})}}">
+                                {{message.message}}
+                            </a>
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{ path('message.delete', {id: message.id})}}" class="btn btn-danger">Törlés</a>
+                        <a href="{{ path('message.show', {id: message.id})}}" class="btn btn-primary">Megnéz</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Develery Test Task
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+		{% endblock %}
+		{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-2" href="{{ path('home')}}">DEVELERY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-4">
+                    {% if not app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('message.contact') }}">Kapcsolat</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('message.index') }}">Üzenetek</a>
+                        </li>
+                    {% endif %}
+                    {% if not app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('login') }}">Belépés</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('users') }}">Felhasználók</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <span class="navbar-text">
+                {% if app.user %}
+                    Üdvözlet {{ app.user.userIdentifier }} , <a href="{{ path('logout') }}"> Kilépés</a>
+                {% endif %}
+            </span>
+        </div>
+        </nav>
+        <div class="container text-center mt-5 mx-auto">
+            {% block body %}{% endblock %}
+        </div>
+		
+	</body>
+</html>

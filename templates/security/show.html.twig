@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Üzenet{% endblock %}
+
+{% block body %}
+    <h2 class="display-2 text-light my-5">Üzenet</h2>
+    <div class="bg-light p-5 border border-dark mx-auto" style="max-width: 600px">
+        <div class="row">
+            <div class="col col-5">
+                <h3 class="fs-4 mb-4">{{user.username}}</h3>
+            </div>
+            <div class="col">
+                {% for role in user.roles %}
+                    <p class="fs-5">{{role}}</p>
+                {% endfor %}
+            </div>
+            <hr>
+        </div>
+        <a href="{{ path('users')}}" class="btn btn-primary">Vissza</a>
+    </div>
+{% endblock %}

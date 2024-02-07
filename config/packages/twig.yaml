@@ -1,0 +1,10 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        author: Gábor Eckstein
+    form_themes: ['bootstrap_5_horizontal_layout.html.twig']
+
+when@test:
+    twig:
+        strict_variables: true
+
