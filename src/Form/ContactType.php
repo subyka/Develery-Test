@@ -37,7 +37,7 @@ class ContactType extends AbstractType{
                 'required' => false,
                 'constraints' => [
                     new Email([
-                        'message' => 'Hiba! Kérjük töltsd ki az összes mezőt!',
+                        'message' => 'Hiba! Kérjük e-mail címet adjál meg!',
                     ]),
                     new NotBlank([
                         'message' => 'Hiba! Kérjük töltsd ki az összes mezőt!',
